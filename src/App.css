@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.input-info {
+  display: flex;
+  gap: 20px;
+  align-items: end;
+}
+
+.input-info-name {
+  box-sizing: border-box;
+  width: 160px;
+  height: 35px;
+  border: 2px solid black;
+}
+
+.input-info-timezone {
+  box-sizing: border-box;
+  width: 160px;
+  height: 35px;
+  border: 2px solid black;
+}
+
+.add-button {
+  background-color: white;
+  width: 120px;
+  height: 35px;
+}
+
+.clock-list {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
