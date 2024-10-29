@@ -1,35 +1,22 @@
-import { useEffect, useState } from "react";
-import moment from "moment-timezone";
 import classes from "./clock.module.css";
 
 type ClockProps = {
   id: number;
   name: string;
-  timezone: string;
+  time: string;
   removeClock: (id: number) => void;
 };
 
 export const Clock: React.FC<ClockProps> = ({
   id,
   name,
-  timezone,
+  time,
   removeClock,
 }) => {
-  const [time, setTime] = useState(moment.tz(timezone));
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTime(moment.tz(timezone));
-    }, 1000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [timezone]);
-
-  const hours = time.hours();
-  const minutes = time.minutes();
-  const seconds = time.seconds();
+  const hours = new Date(time).getHours();
+  const minutes = new Date(time).getMinutes();
+  const seconds = new Date(time).getSeconds();
 
   const hourAngle = (hours % 12) * 30 + minutes * 0.5;
   const minuteAngle = minutes * 6;
@@ -42,15 +29,15 @@ export const Clock: React.FC<ClockProps> = ({
         <div
           className={`${classes["hand"]} ${classes["hour-hand"]}`}
           style={{ transform: `rotate(${hourAngle}deg)` }}
-        ></div>
+        />
         <div
           className={`${classes["hand"]} ${classes["minute-hand"]}`}
           style={{ transform: `rotate(${minuteAngle}deg)` }}
-        ></div>
+        />
         <div
           className={`${classes["hand"]} ${classes["second-hand"]}`}
           style={{ transform: `rotate(${secondAngle}deg)` }}
-        ></div>
+        />
         <button
           className={classes["remove-button"]}
           onClick={() => removeClock(id)}
